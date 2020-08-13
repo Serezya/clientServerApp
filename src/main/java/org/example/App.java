@@ -15,16 +15,24 @@ public class App {
             System.out.println("Server start");
             Socket clientSocket = serverSocket.accept(); // ждем подключения
             System.out.println("Connection accept");
-            Thread.sleep(1000);
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             final String name = in.readLine();
             out.println(String.format("Hi %s, your port is %d", name, clientSocket.getPort()));
+            out.println("Write your name");
+            final String userName = in.readLine();
+            out.println("Are you child?(yes/no)");
+            final String child = in.readLine();
+            if ("no".equals(child)){
+                out.println("Welcome to the adult zone, " +userName +" ! Have a good rest, or a good working day!");
+            }else {
+                out.println("Welcome to the kids area, " +userName +" ! Let's play!");
+            }
             clientSocket.close();
             out.close();
             in.close();
         }
-        catch (IOException | InterruptedException e) {
+        catch (IOException e) {
             System.out.println();
         }
     }

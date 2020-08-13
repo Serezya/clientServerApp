@@ -7,15 +7,23 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
-    static String host = "localhost";
+    static String host = "netology.homework";
     static int port = 8080;
     public static void main(String [] args) {
         try (Socket clientSocket = new Socket(host, port);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-            out.println("User\n" + "Host: " + host + "\n"+"Port: " + port +"\n" +"\n\n\n");
+            out.println("User");
             String resp = in.readLine();
             System.out.println(resp);
+            System.out.println(in.readLine());
+            out.println("Sergey");
+            System.out.println("Sergey");
+
+            System.out.println(in.readLine());
+            out.println("no");
+            System.out.println("no");
+            System.out.println(in.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
